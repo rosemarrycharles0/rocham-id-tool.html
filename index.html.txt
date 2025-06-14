@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <title>Rocham Group ID Extractor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #047857;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    #output {
+      white-space: pre-wrap;
+      background: white;
+      padding: 15px;
+      border: 1px solid #ccc;
+      min-height: 150px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🧮 Rocham Group ID Extractor</h2>
+  <p>Weka maandishi hapa chini, system itatoa namba zote tu (IDs).</p>
+
+  <textarea id="input" placeholder="Weka maandishi hapa..."></textarea>
+  <br>
+  <button onclick="extractNumbers()">Toa Namba</button>
+  <button onclick="copyToClipboard()">Copy Matokeo</button>
+
+  <h3>📋 Matokeo:</h3>
+  <div id="output"></div>
+
+  <script>
+    function extractNumbers() {
+      const input = document.getElementById("input").value;
+      const matches = input.match(/\d{4,}/g); // namba 4 au zaidi
+      const unique = [...new Set(matches)] || [];
+      document.getElementById("output").innerText = unique.join('\n');
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById("output").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Umenakili namba zote!");
+      });
+    }
+  </script>
+
+</body>
+</html>
